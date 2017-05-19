@@ -1,0 +1,17 @@
+#!/bin/bash
+USAGE='Usage: ping-pong indexfile port'
+
+if [[ $# -eq 2 ]] && [[ -f $1 ]] && [[ $2 =~ ^[0-9]+$ ]]; then
+  true;
+else
+  echo ${USAGE}
+  exit 1
+fi
+
+echo 'Tiny server starting...'
+trap 'echo "Tiny server stopping"; exit 0' INT
+
+while /bin/nc -l -p $2 -q 1 < $1 > /dev/null
+do
+  true
+done
