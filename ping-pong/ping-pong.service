@@ -1,0 +1,12 @@
+[Unit]
+Description=Dumb http server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/share/ping-pong
+ExecStart=/usr/bin/ping-pong.sh 8888
+
+[Install]
+WantedBy=multi-user.target
+

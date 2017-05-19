@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+DISTRIBUTION=all
+VERSION = 1.0
+PACKAGEVERSION = $(VERSION)-0~$(DISTRIBUTION)0
+URL = git@bitbucket.org:Marnikitta/nc-http-server.git
+
+%:
+	dh $@ --with systemd
+
+override_dh_auto_clean:
+override_dh_auto_test:
+override_dh_auto_build:
+override_dh_auto_install:
+	git clone git@bitbucket.org:Marnikitta/nc-http-server.git ping-pong
+	mkdir -p debian/ping-pong/usr/bin/
+	mkdir -p debian/ping-pong/usr/share/ping-pong/
+	mv ping-pong/bin/* debian/ping-pong/usr/bin/
+	mv ping-pong/share/* debian/ping-pong/usr/share/ping-pong/
+
+override_dh_gencontrol:
+	dh_gencontrol -- -v$(PACKAGEVERSION)
+

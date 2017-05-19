@@ -1,0 +1,10 @@
+Source: ping-pong
+Section: web
+Priority: optional
+Maintainer: Nikita Marshalkin <marnikitta@gmail.com>
+
+Package: ping-pong
+Description: Dumb web server
+Version: 1.0-1
+Architecture: all
+Depends: netcat-traditional (>= 1.10-41), bash, git, debhelper (>= 9), ca-certificates, dh-systemd
